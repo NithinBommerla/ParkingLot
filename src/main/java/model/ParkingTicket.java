@@ -38,7 +38,7 @@ public class ParkingTicket {
     @Override
     public String toString() {
         return "ParkingTicket{" +
-                "id= " + id +
+                "ticket id= " + id +
                 ", parkingSpot= " + parkingSpot.getParkingSpotNumber() +
                 ", entryTime= " + entryTime +
                 ", vehicle= " + vehicle.getVehicleNumber() +

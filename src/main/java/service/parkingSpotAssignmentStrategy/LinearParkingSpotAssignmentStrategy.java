@@ -1,7 +1,6 @@
-package service.strategy;
+package service.parkingSpotAssignmentStrategy;
 
 import exception.ParkingSpotNotAvailableException;
-import exception.ParkingSpotNotFoundException;
 import model.ParkingFloor;
 import model.ParkingLot;
 import model.ParkingSpot;

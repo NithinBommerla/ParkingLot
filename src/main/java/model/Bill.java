@@ -16,6 +16,19 @@ public class Bill {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "bill id= " + id +
+                ", exitTime= " + exitTime +
+                ", exitGate= " + exitGate.getGateNumber() +
+                ", operator= " + operator.getName() +
+                ", parkingTicket= " + parkingTicket +
+                ", amount= " + amount +
+                ", payment= " + payment +
+                '}';
+    }
+
     public void setId(int id) {
         this.id = id;
     }

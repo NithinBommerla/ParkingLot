@@ -1,4 +1,4 @@
-package service.strategy;
+package service.parkingSpotAssignmentStrategy;
 
 import model.ParkingLot;
 import model.ParkingSpot;

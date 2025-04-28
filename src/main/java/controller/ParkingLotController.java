@@ -16,13 +16,13 @@ public class ParkingLotController {
         this.parkingLotService = parkingLotService;
     }
 
-    public boolean isSlotAvailable() {
-        return true;
+    public boolean isSlotAvailable(ParkingLot parkingLot) {
+        return parkingLot.getAvailableSlots() > 0;
     }
 
-    public boolean isSlotAvailable(VehicleType vehicleType) {
+    public boolean isSlotAvailable(ParkingLot parkingLot, VehicleType vehicleType) {
         // TODO: Check Availability based on the class or Type of the vehicle.
-        return true;
+        return parkingLot.getAvailableSlots() > 0;
     }
 
     public ParkingLot initialiseParkingLot(int noOfFloors, int noOfSpotsInAFloor) {

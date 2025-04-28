@@ -1,4 +1,4 @@
-package service.strategy;
+package service.parkingSpotAssignmentStrategy;
 
 public class ParkingSpotAssignmentStrategyFactory {
     public static ParkingSpotAssignmentStrategy getParkingSpotAssignmentStrategy() {

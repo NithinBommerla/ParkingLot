@@ -6,8 +6,8 @@ import model.constant.ParkingSpotStatus;
 import model.constant.ParkingSpotTier;
 import model.constant.VehicleType;
 import repository.*;
-import service.strategy.ParkingSpotAssignmentStrategy;
-import service.strategy.ParkingSpotAssignmentStrategyFactory;
+import service.parkingSpotAssignmentStrategy.ParkingSpotAssignmentStrategy;
+import service.parkingSpotAssignmentStrategy.ParkingSpotAssignmentStrategyFactory;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
