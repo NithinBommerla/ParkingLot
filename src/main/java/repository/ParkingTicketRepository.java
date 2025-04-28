@@ -9,7 +9,7 @@ public class ParkingTicketRepository {
     private HashMap<Integer, ParkingTicket> parkingTicketMap;
     private static int counter = 1;
 
-    public ParkingTicketRepository(HashMap<Integer, ParkingTicket> parkingTicketMap) {
+    public ParkingTicketRepository() { // HashMap<Integer, ParkingTicket> parkingTicketMap
         this.parkingTicketMap = new HashMap<>();
     }
 

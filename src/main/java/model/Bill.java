@@ -1,10 +1,11 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Bill {
     private int id;
-    private Date exitTime;
+    private LocalDateTime exitTime;
     private ParkingGate exitGate;
     private Operator operator;
     private ParkingTicket parkingTicket;
@@ -19,11 +20,11 @@ public class Bill {
         this.id = id;
     }
 
-    public Date getExitTime() {
+    public LocalDateTime getExitTime() {
         return exitTime;
     }
 
-    public void setExitTime(Date exitTime) {
+    public void setExitTime(LocalDateTime exitTime) {
         this.exitTime = exitTime;
     }
 

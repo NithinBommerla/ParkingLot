@@ -1,10 +1,15 @@
 import controller.BillController;
 import controller.ParkingLotController;
 import controller.ParkingTicketController;
+import exception.ParkingLotNotFoundException;
 import model.Bill;
+import model.ParkingGate;
+import model.ParkingLot;
 import model.ParkingTicket;
 import model.constant.ParkingSpotTier;
 import repository.*;
+import service.ParkingLotService;
+import service.ParkingTicketService;
 
 import java.util.Scanner;
 
@@ -18,13 +23,21 @@ public class Main {
         ParkingSpotRepository parkingSpotRepository = new ParkingSpotRepository();
         VehicleRepository vehicleRepository = new VehicleRepository();
 
-        ParkingLotController parkingLotController = new ParkingLotController();
-        ParkingTicketController parkingTicketController = new ParkingTicketController();
+        ParkingLotService parkingLotService = new ParkingLotService(parkingLotRepository,
+                parkingFloorRepository, parkingSpotRepository, parkingGateRepository);
+        ParkingTicketService parkingTicketService = new ParkingTicketService(parkingLotRepository,
+                parkingGateRepository, parkingTicketRepository, parkingSpotRepository, vehicleRepository);
+
+        ParkingLotController parkingLotController = new ParkingLotController(parkingLotService);
+        ParkingTicketController parkingTicketController = new ParkingTicketController(parkingTicketService);
         BillController billController = new BillController();
 
+        System.out.println("Welcome to Parking Lot System");
+
+        ParkingLot parkingLot = parkingLotController.initialiseParkingLot(2,10);
+        parkingLotController.showParkingLot(parkingLot);
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Welcome to Parking Lot System");
         while(true) {
             System.out.println("Choose one of the following");
             System.out.println("1. Enter a new vehicle\n2. Exit vehicle");
@@ -33,9 +46,10 @@ public class Main {
                 if(parkingLotController.isSlotAvailable()){
                     System.out.println("Please Enter vehicle Number");
                     String vehicleNumber = sc.next();
-                    ParkingTicket parkingTicket = parkingLotController.generateTicket(vehicleNumber, ParkingSpotTier.NORMAL, 1);
+                    ParkingTicket parkingTicket = parkingTicketController.generateTicket(parkingLot,
+                            vehicleNumber, ParkingSpotTier.NORMAL, 1);
                     parkingTicketController.displayTicketDetails(parkingTicket);
-                    parkingLotController.displayParkingLotStatus();
+                    parkingLotController.showParkingLot(parkingLot);
 
                 } else {
                     System.out.println("Parking Lot is full, Sorry for the Inconvenience caused");
@@ -43,13 +57,13 @@ public class Main {
             } else {
                 System.out.println("Please Enter your Parking Ticket Id");
                 int ticketId = sc.nextInt();
-                Bill bill = parkingLotController.generateBill(ticketId, 2);
+                Bill bill = billController.generateBill(ticketId, 2);
                 billController.displayBillDetails(bill);
-                System.out.println("Please choose Payment Mode\n1. Cash\n2. Card\n3. Online(UPI)");
+                System.out.println("Please choose Payment Mode\n1.Cash\n2.Card\n3.Online(UPI)");
                 int paymentMode = sc.nextInt();
                 // Generate Bill with payment Mode
                 // Display Bill
-                parkingLotController.displayParkingLotStatus();
+                parkingLotController.showParkingLot(parkingLot);
             }
         }
     }

@@ -9,7 +9,7 @@ public class BillRepository {
     private HashMap<Integer, Bill> billMap;
     private static int counter = 1;
 
-    public BillRepository(HashMap<Integer, Bill> billMap) {
+    public BillRepository() { // HashMap<Integer, Bill> billMap
         this.billMap = new HashMap<>();
     }
 

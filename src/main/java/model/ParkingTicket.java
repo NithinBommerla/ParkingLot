@@ -1,11 +1,12 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ParkingTicket {
     private int id;
     private ParkingSpot parkingSpot;
-    private Date entryTime;
+    private LocalDateTime entryTime;
     private Vehicle vehicle;
     private ParkingGate parkingGate;
     private Operator operator;
@@ -26,12 +27,24 @@ public class ParkingTicket {
         this.parkingSpot = parkingSpot;
     }
 
-    public Date getEntryTime() {
+    public LocalDateTime getEntryTime() {
         return entryTime;
     }
 
-    public void setEntryTime(Date entryTime) {
+    public void setEntryTime(LocalDateTime entryTime) {
         this.entryTime = entryTime;
+    }
+
+    @Override
+    public String toString() {
+        return "ParkingTicket{" +
+                "id= " + id +
+                ", parkingSpot= " + parkingSpot.getParkingSpotNumber() +
+                ", entryTime= " + entryTime +
+                ", vehicle= " + vehicle.getVehicleNumber() +
+                ", parkingGate= " + parkingGate.getGateNumber() +
+                ", operator= " + operator.getName() +
+                '}';
     }
 
     public Vehicle getVehicle() {

@@ -1,12 +1,20 @@
 package controller;
 
 import model.Bill;
+import model.ParkingLot;
 import model.ParkingTicket;
 import model.Vehicle;
 import model.constant.ParkingSpotTier;
 import model.constant.VehicleType;
+import service.ParkingLotService;
 
 public class ParkingLotController {
+
+    private ParkingLotService parkingLotService;
+
+    public ParkingLotController(ParkingLotService parkingLotService) {
+        this.parkingLotService = parkingLotService;
+    }
 
     public boolean isSlotAvailable() {
         return true;
@@ -17,26 +25,14 @@ public class ParkingLotController {
         return true;
     }
 
-    public ParkingTicket generateTicket(String vehicleNumber, ParkingSpotTier spotTier, int entryGateId) {
-        // If Vehicle details are not present
-        // call generate ticket with vehicle object and return the ticket
-        // i.e. call generateTicket(Vehicle vehicle, ......)
-        return null;
+    public ParkingLot initialiseParkingLot(int noOfFloors, int noOfSpotsInAFloor) {
+        //TODO: Add validations to limit the no of floors and spots
+        // ex: Floors <= 10 && Spots <= 1000
+        return parkingLotService.initialiseParkingLot(noOfFloors, noOfSpotsInAFloor);
     }
 
-    public ParkingTicket generateTicket(Vehicle vehicle, ParkingSpotTier spotTier, int entryGateId) {
-        return null;
-    }
-
-    public Bill generateBill(int ticketId, int exitGateId) {
-        return null;
-    }
-
-    public Bill billPayment(Bill bill) {
-        return null;
-    }
-
-    public void displayParkingLotStatus() {
+    public void showParkingLot(ParkingLot parkingLot) {
         System.out.println("Displaying Parking Lot Status");
+        parkingLotService.showParkingLot(parkingLot);
     }
 }
